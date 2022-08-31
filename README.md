@@ -6,9 +6,10 @@ Applying this plugin into a Spring Boot project will prepare and configure it fo
 
 1. Enables and configures Spring Security OAuth2 Resource Server;
 2. Configures an instance of `WebSecurityConfigurerAdapter` following good practices for REST API applications;
-3. Configures an error handler for Spring Security exceptions using the Problem-Spring-Web library;
-4. Generates production and test sample codes so that you have a starting point for writing good integration tests for protected REST API;
-5. Configures Docker Compose with Keycloak Authorization Server so that you can run you application locally;
+3. Configures access rules for both Spring Actuator and OpenAPI endpoints; 
+4. Configures an error handler for Spring Security exceptions using the Problem-Spring-Web library;
+5. Generates production and test sample code so that you have a starting point for writing good integration tests for REST API protected by OAuth2 protocol;
+6. Configures Docker Compose with Keycloak Authorization Server so that you can run your application locally;
 
 ## How to use
 
