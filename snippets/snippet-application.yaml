@@ -1,0 +1,9 @@
+    ##
+    # Spring Security - OAuth2 Resource Server
+    ##
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri:  http://localhost:18080/auth/realms/{{project_name}}
+                    jwk-set-uri: http://localhost:18080/auth/realms/{{project_name}}/protocol/openid-connect/certs

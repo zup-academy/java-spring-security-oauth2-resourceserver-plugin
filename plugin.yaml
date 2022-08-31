@@ -15,17 +15,43 @@ technologies: # Ref: https://docs.stackspot.com/latest/docs/creators-guide/yaml/
 types:
   - app
 inputs:
-  - label: Input Example
+  - label: What is the application root package?
     type: text
-    name: example
-    default: any text
-  - label: Example of number
-    type: int
-    name: any_number
-    default: "10"
-  - label: Example of list
-    type: multiselect
-    name: any_list
-    items:
-      - item1
-      - item2
+    name: application_package
+
+computed-inputs:
+  application_package_folder: "{{application_package|replace('.', '/')}}"
+
+hooks:
+  ##
+  # Edit application.yaml
+  ##
+  - type: edit
+    path: src/main/resources/application.yaml
+    trigger: after-render    
+    changes:
+      - search:
+          string: "spring:"
+          insert-after:
+            snippet: snippets/snippet-application.yaml
+          when:
+            not-exists: "resourceserver:"
+  ##
+  # Edit pom.xml
+  ##
+  - type: edit
+    path: pom.xml
+    trigger: after-render    
+    changes:
+      - search:
+          string: "</dependencies>"
+          insert-before:
+            snippet: snippets/snippet-pom.xml
+          when:
+            not-exists-snippet: snippets/snippet-pom.xml
+  ##
+  # Create or edit docker-compose.yaml
+  ##
+  - type: render-templates
+    trigger: after-render
+    path: snippets/docker-keycloak
