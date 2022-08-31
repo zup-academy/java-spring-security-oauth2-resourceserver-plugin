@@ -36,8 +36,8 @@ class NewBookControllerTest {
     public void t1() throws Exception {
         // scenario
         NewBookRequest request = new NewBookRequest(
-                "Desbravando SOLIDO",
-                "Práticas avançadas para códigos de qualidade em Java moderno",
+                "A valid title about JPA and Hibernate",
+                "A valid description for this amazing about JPA and Hibernate",
                 "978-0-4703-2225-3",
                 LocalDate.now().minusYears(1)
         );
@@ -60,10 +60,10 @@ class NewBookControllerTest {
     public void t2() throws Exception {
         // scenario
         NewBookRequest request = new NewBookRequest(
-                "Desbravando SOLIDO",
-                "Práticas avançadas para códigos de qualidade em Java moderno",
+                "A valid title about Java",
+                "A valid description for this amazing about Java",
                 "978-0-4703-2225-3",
-                LocalDate.now().minusYears(1)
+                LocalDate.now().minusYears(2)
         );
 
         // action and validation
@@ -80,10 +80,10 @@ class NewBookControllerTest {
     public void t3() throws Exception {
         // scenario
         NewBookRequest request = new NewBookRequest(
-                "Desbravando SOLIDO",
-                "Práticas avançadas para códigos de qualidade em Java moderno",
+                "A valid title about Spring Boot",
+                "A valid description for this amazing about Spring Boot",
                 "978-0-4703-2225-3",
-                LocalDate.now().minusYears(1)
+                LocalDate.now().minusYears(3)
         );
 
         // action and validation

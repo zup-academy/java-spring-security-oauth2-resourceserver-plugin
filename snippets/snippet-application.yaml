@@ -5,5 +5,5 @@
         oauth2:
             resourceserver:
                 jwt:
-                    issuer-uri:  http://localhost:18080/auth/realms/{{project_name}}
-                    jwk-set-uri: http://localhost:18080/auth/realms/{{project_name}}/protocol/openid-connect/certs
+                    issuer-uri:  http://localhost:18080/auth/realms/my-app-realm
+                    jwk-set-uri: http://localhost:18080/auth/realms/my-app-realm/protocol/openid-connect/certs
