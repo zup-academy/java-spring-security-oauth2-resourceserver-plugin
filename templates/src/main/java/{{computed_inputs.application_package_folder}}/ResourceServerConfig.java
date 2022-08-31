@@ -43,8 +43,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/actuator/health/**").permitAll()
                     // ??? configure your endpoints here
-                    .antMatchers(POST, "/api/v1/authors").hasAuthority("SCOPE_authors:write")
-                    .antMatchers(GET, "/api/v1/authors/**").hasAuthority("SCOPE_authors:read")
+                    .antMatchers(POST, "/api/v1/books").hasAuthority("SCOPE_books:write")
+                    .antMatchers(GET, "/api/v1/books/**").hasAuthority("SCOPE_books:read")
                     // ???
                 .anyRequest()
                     .authenticated()

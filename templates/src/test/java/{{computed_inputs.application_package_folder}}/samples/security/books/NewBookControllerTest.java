@@ -13,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
-import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
@@ -43,7 +42,7 @@ class NewBookControllerTest {
                 LocalDate.now().minusYears(1)
         );
 
-        // action (and validation)
+        // action and validation
         mockMvc.perform(post("/api/v1/books")
                         .contentType(APPLICATION_JSON)
                         .content(toJson(request))
@@ -56,11 +55,47 @@ class NewBookControllerTest {
         ;
     }
 
-    private Map<String, Object> violation(String field, String message) {
-        return Map.of(
-                "field", field,
-                "message", message
+    @Test
+    @DisplayName("should not create a new book when token is not sent")
+    public void t2() throws Exception {
+        // scenario
+        NewBookRequest request = new NewBookRequest(
+                "Desbravando SOLIDO",
+                "Práticas avançadas para códigos de qualidade em Java moderno",
+                "978-0-4703-2225-3",
+                LocalDate.now().minusYears(1)
         );
+
+        // action and validation
+        mockMvc.perform(post("/api/v1/books")
+                        .contentType(APPLICATION_JSON)
+                        .content(toJson(request))
+                        .header(HttpHeaders.ACCEPT_LANGUAGE, "en"))
+                .andExpect(status().isUnauthorized()) // 401-Unauthorized
+        ;
+    }
+
+    @Test
+    @DisplayName("should not create a new book when token has not the properly scope")
+    public void t3() throws Exception {
+        // scenario
+        NewBookRequest request = new NewBookRequest(
+                "Desbravando SOLIDO",
+                "Práticas avançadas para códigos de qualidade em Java moderno",
+                "978-0-4703-2225-3",
+                LocalDate.now().minusYears(1)
+        );
+
+        // action and validation
+        mockMvc.perform(post("/api/v1/books")
+                        .contentType(APPLICATION_JSON)
+                        .content(toJson(request))
+                        .header(HttpHeaders.ACCEPT_LANGUAGE, "en")
+                        .with(jwt()
+                            .authorities(new SimpleGrantedAuthority("SCOPE_books:invalid"))
+                        ))
+                .andExpect(status().isForbidden()) // 403-Forbidden
+        ;
     }
 
     private String toJson(Object payload) throws JsonProcessingException {
