@@ -6,6 +6,8 @@ category: backend # Ref: https://docs.stackspot.com/latest/docs/creators-guide/y
 compatibility:
   - java
   - spring
+  - maven
+  - aplication.yaml
 about: docs/about.md
 usage: docs/usage.md
 use-case: docs/use-case.md
@@ -14,10 +16,6 @@ technologies: # Ref: https://docs.stackspot.com/latest/docs/creators-guide/yaml/
   - "Api"
 types:
   - app
-inputs:
-  - label: What is the application root package?
-    type: text
-    name: application_package
 
 computed-inputs:
   application_package_folder: "{{application_package|replace('.', '/')}}"
@@ -55,3 +53,9 @@ hooks:
   - type: render-templates
     trigger: after-render
     path: snippets/docker-keycloak
+  ##
+  # Create path directory samples
+  ##
+  - type: run-script
+    trigger: after-render
+    script: snippets/open-pom.py

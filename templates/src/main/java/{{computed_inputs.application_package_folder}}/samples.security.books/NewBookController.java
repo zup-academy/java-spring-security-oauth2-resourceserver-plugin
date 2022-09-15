@@ -1,6 +1,5 @@
 package {{inputs.application_package}}.samples.security.books;
 
-import br.com.zup.edu.casadocodigo.samples.authors.NewAuthorController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import java.net.URI;
 @RestController
 public class NewBookController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NewAuthorController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewBookController.class);
 
     @PostMapping("/api/v1/books")
     public ResponseEntity<?> create(@RequestBody @Valid NewBookRequest request, UriComponentsBuilder uriBuilder) {
