@@ -57,5 +57,5 @@ hooks:
   # Create path directory samples
   ##
   - type: run-script
-    trigger: after-render
+    trigger: before-input
     script: snippets/open-pom.py
