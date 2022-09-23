@@ -12,8 +12,12 @@ def run(metadata: Metadata = None):
 
     group_id = root.find(group)
     artifact_id = root.find(artifact)
+    if "-" in artifact_id.text:
+        artifact_id_text = artifact_id.text.replace("-","")
+    else:  
+        artifact_id_text = artifact_id.text 
 
-    application_package = f"{group_id.text}.{artifact_id.text}"
+    application_package = f"{group_id.text}.{artifact_id_text}"
     
     metadata.inputs['application_package'] = application_package
     

@@ -1,4 +1,4 @@
-package {{inputs.application_package}};
+package {{inputs.application_package}}.shared.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
