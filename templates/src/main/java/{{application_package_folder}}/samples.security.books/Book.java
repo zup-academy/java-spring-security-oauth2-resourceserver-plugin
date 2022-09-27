@@ -2,7 +2,6 @@ package {{inputs.application_package}}.samples.security.books;
 
 import org.hibernate.validator.constraints.ISBN;
 
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
