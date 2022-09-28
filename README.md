@@ -32,6 +32,8 @@ git status
 
 Nice! You're ready for production I guess 🥳
 
+[See here the benefits and how to use the Java Spring Security OAuth2 Resource Server Plugin](https://youtu.be/hlZUwmPGxh0)
+
 ## Support
 
 If you need any help, please open an [issue on Plugin's Github repository](https://github.com/zup-academy/java-spring-security-oauth2-resourceserver-plugin). 
